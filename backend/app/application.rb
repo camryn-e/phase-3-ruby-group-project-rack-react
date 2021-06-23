@@ -8,7 +8,7 @@ class Application
       if req.env["REQUEST_METHOD"] == "POST"
         event_city_id = req.path.split('/cities/').last.split('/pride-events/').last
         input = JSON.parse(req.body.read)
-        pride_event = PrideEvent.create(title: input["title"], category: input["category"], description: input["description"], age_rating: input["age rating"], city_id: event_city_id)
+        pride_event = PrideEvent.create(title: input["title"], category: input["category"], description: input["description"], age_rating: input["age_rating"], city_id: event_city_id)
         return [200, { 'Content-Type' => 'application/json' }, [pride_event.to_json]]
       elsif req.env["REQUEST_METHOD"] == "DELETE"
         event_city_id = req.path.split('/cities/').last.split('/pride-events/').first
@@ -36,7 +36,7 @@ class Application
     else
       resp.write "Path Not Found"
     end
-    
+
     resp.finish
 
   end
